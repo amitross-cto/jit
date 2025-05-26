@@ -1,37 +1,21 @@
-name: My plan
-level: beginner
 author: Jit
-version: 0.1
-owners:
-  default: null
-references:
-  - https://www.jit.io
-tags: []
 items:
-  - name: Scan your code for vulnerabilities (SAST)
-    uses: >-
-      jitsecurity-controls/jit-plans/items/code/item-code-vulnerability.yml@latest
-  - name: Scan code for hard-coded secrets
-    uses: jitsecurity-controls/jit-plans/items/code/item-secret-detection.yml@latest
+- name: Scan your code for vulnerabilities (SAST)
+  uses: jitsecurity-controls/jit-plans/items/code/item-code-vulnerability.yml@latest
+- name: Scan code for hard-coded secrets
+  uses: jitsecurity-controls/jit-plans/items/code/item-secret-detection.yml@latest
+- name: Analyze for Jit Context
+  uses: jitsecurity-controls/jit-plans/items/jit-context/item-jit-context-analysis.yml@latest
+level: beginner
+name: My plan
 override:
   workflows:
-    secret-detection:
-      jobs:
-        secret-detection:
-          enabled: false
-        secret-detection-trufflehog:
-          enabled: true
-          steps:
-            - name: Run Trufflehog
-              uses: registry.jit.io/control-trufflehog-alpine:latest
-              with:
-                args: filesystem ${WORK_DIR:-.} --json --only-verified
-                env:
-                  SECURITY_CONTROL_OUTPUT_FILE: /tmp/final-findings.json
     sast:
       jobs:
-        static-code-analysis-semgrep-pro:
-          enabled: true
+        static-code-analysis-bash:
+          enabled: false
+        static-code-analysis-c-cpp:
+          enabled: false
         static-code-analysis-csharp:
           enabled: false
         static-code-analysis-go:
@@ -42,23 +26,40 @@ override:
           enabled: false
         static-code-analysis-kotlin:
           enabled: false
+        static-code-analysis-php:
+          enabled: false
         static-code-analysis-python:
           enabled: false
         static-code-analysis-python-semgrep:
+          enabled: false
+        static-code-analysis-ruby:
           enabled: false
         static-code-analysis-rust:
           enabled: false
         static-code-analysis-scala:
           enabled: false
+        static-code-analysis-semgrep-pro:
+          enabled: true
         static-code-analysis-swift:
-          enabled: false
-        static-code-analysis-ruby:
-          enabled: false
-        static-code-analysis-c-cpp:
-          enabled: false
-        static-code-analysis-bash:
-          enabled: false
-        static-code-analysis-php:
           enabled: false
         static-code-analysis-yaml:
           enabled: false
+    secret-detection:
+      jobs:
+        secret-detection:
+          enabled: false
+        secret-detection-trufflehog:
+          enabled: true
+          steps:
+          - name: Run Trufflehog
+            uses: registry.jit.io/control-trufflehog-alpine:latest
+            with:
+              args: filesystem ${WORK_DIR:-.} --json --only-verified
+              env:
+                SECURITY_CONTROL_OUTPUT_FILE: /tmp/final-findings.json
+owners:
+  default: null
+references:
+- https://www.jit.io
+tags: []
+version: 0.1
