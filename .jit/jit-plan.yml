@@ -8,9 +8,6 @@ references:
   - https://www.jit.io
 tags: []
 items:
-  - name: Scan your code for vulnerabilities (SAST)
-    uses: >-
-      jitsecurity-controls/jit-plans/items/code/item-code-vulnerability.yml@latest
   - name: Analyze for Jit Context
     uses: >-
       jitsecurity-controls/jit-plans/items/jit-context/item-jit-context-analysis.yml@latest
@@ -31,7 +28,3 @@ override:
                 args: filesystem ${WORK_DIR:-.} --json --only-verified
                 env:
                   SECURITY_CONTROL_OUTPUT_FILE: /tmp/final-findings.json
-    sast:
-      jobs:
-        static-code-analysis-semgrep-pro:
-          enabled: false
