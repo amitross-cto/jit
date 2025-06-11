@@ -1,0 +1,8 @@
+test-repo:
+  - CKV_AWS_20
+
+project-name-a:
+  - CKV_CUSTOM_1
+
+project-name-b:
+  - CKV_AWS_20
