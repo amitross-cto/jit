@@ -18,6 +18,20 @@ items:
       jitsecurity-controls/jit-plans/items/infrastructure/item-iac-misconfiguration-detection.yml@latest
 override:
   workflows:
+    iac-misconfiguration-detection:
+      jobs:
+        checkov-iac-misconfig-detection:
+          enabled: true
+        iac-misconfig-detection-cloudformation:
+          enabled: false
+        iac-misconfig-detection-kubernetes:
+          enabled: false
+        iac-misconfig-detection-pulumi:
+          enabled: false
+        iac-misconfig-detection-serverless:
+          enabled: false
+        iac-misconfig-detection-terraform:
+          enabled: false
     secret-detection:
       jobs:
         secret-detection:
@@ -31,3 +45,4 @@ override:
                 args: filesystem ${WORK_DIR:-.} --json --only-verified
                 env:
                   SECURITY_CONTROL_OUTPUT_FILE: /tmp/final-findings.json
+  
