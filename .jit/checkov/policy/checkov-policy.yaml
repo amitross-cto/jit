@@ -1,0 +1,16 @@
+metadata:
+  name: "Deny public S3 buckets"
+  id: "CUSTOM_AWS_001"
+  category: "Security"
+  severity: "HIGH"
+  description: "S3 buckets should not allow public access."
+
+scope:
+  provider: "aws"
+  resource: "aws_s3_bucket"
+
+definition:
+  cond_type: "attribute"
+  attribute: "acl"
+  operator: "not_equals"
+  value: "public-read"
