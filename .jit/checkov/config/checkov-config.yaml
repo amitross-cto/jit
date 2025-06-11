@@ -1,0 +1,222 @@
+output: cli
+quiet: false
+skip-download: true
+external-checks-dir:
+  - "./policies"
+check:
+  - CKV_DOCKER_5 #Ensure update instructions are not use alone in the Dockerfile
+  - CKV_DOCKER_3 #Ensure that a user for the container has been created
+  - CKV2_GCP_123 #Enforce Regional Scope for Autopilot Clusters #custom-policy
+  - CKV_GCP_1 # Ensure Stackdriver Logging is set to Enabled on Kubernetes Engine Clusters
+  - CKV_GCP_2 # Ensure Google compute firewall ingress does not allow unrestricted ssh access
+  - CKV_GCP_3 # Ensure Google compute firewall ingress does not allow unrestricted rdp access
+  - CKV_GCP_4 # Ensure no HTTPS or SSL proxy load balancers permit SSL policies with weak cipher suites
+  - CKV_GCP_7 # Ensure Legacy Authorization is set to Disabled on Kubernetes Engine Clusters
+  - CKV_GCP_8 # Ensure Stackdriver Monitoring is set to Enabled on Kubernetes Engine Clusters
+  - CKV_GCP_9 # Ensure Node Auto-Repair is enabled for GKE nodes
+  - CKV_GCP_10 # Ensure 'Automatic node upgrade' is enabled for Kubernetes Clusters
+  - CKV_GCP_11 # Ensure that Cloud SQL database Instances are not open to the world
+  - CKV_GCP_12 # Ensure Network Policy is enabled on Kubernetes Engine Clusters
+  - CKV_GCP_13 # Ensure client certificate authentication to Kubernetes Engine Clusters is disabled
+  - CKV_GCP_18 # Ensure GKE Control Plane is not public
+  - CKV_GCP_19 # Ensure GKE basic auth is disabled
+  - CKV_GCP_20 # Ensure master authorized networks is set to enabled in GKE clusters
+  - CKV_GCP_21 # Ensure Kubernetes Clusters are configured with Labels
+  - CKV_GCP_22 # Ensure Container-Optimized OS (cos) is used for Kubernetes Engine Clusters Node image
+  - CKV_GCP_24 # Ensure PodSecurityPolicy controller is enabled on the Kubernetes Engine Clusters
+  - CKV_GCP_25 # Ensure Kubernetes Cluster is created with Private cluster enabled
+  - CKV_GCP_28 # Ensure that Cloud Storage bucket is not anonymously or publicly accessible
+  - CKV_GCP_29 # Ensure that Cloud Storage buckets have uniform bucket-level access enabled
+  - CKV_GCP_30 # Ensure that instances are not configured to use the default service account
+  - CKV_GCP_31 # Ensure that instances are not configured to use the default service account with full access to all Cloud APIs
+  - CKV_GCP_32 # Ensure 'Block Project-wide SSH keys' is enabled for VM instances
+  - CKV_GCP_36 # Ensure that IP forwarding is not enabled on Instances
+  - CKV_GCP_40 # Ensure that Compute instances do not have public IP addresses
+  - CKV_GCP_41 # Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level
+  - CKV_GCP_42 # Ensure that Service Account has no Admin privileges
+  - CKV_GCP_44 # Ensure no roles that enable to impersonate and manage all service accounts are used at a folder level
+  - CKV_GCP_44 # Ensure no roles that enable to impersonate and manage all service accounts are used at a folder level
+  - CKV_GCP_45 # Ensure no roles that enable to impersonate and manage all service accounts are used at an organization level
+  - CKV_GCP_45 # Ensure no roles that enable to impersonate and manage all service accounts are used at an organization level
+  - CKV_GCP_46 # Ensure Default Service account is not used at a project level
+  - CKV_GCP_46 # Ensure Default Service account is not used at a project level
+  - CKV_GCP_47 # Ensure default service account is not used at an organization level
+  - CKV_GCP_47 # Ensure default service account is not used at an organization level
+  - CKV_GCP_48 # Ensure Default Service account is not used at a folder level
+  - CKV_GCP_48 # Ensure Default Service account is not used at a folder level
+  - CKV_GCP_64 # Ensure clusters are created with Private Nodes
+  - CKV_GCP_65 # Manage Kubernetes RBAC users with Google Groups for GKE
+  - CKV_GCP_66 # Ensure use of Binary Authorization
+  - CKV_GCP_67 # Ensure legacy Compute Engine instance metadata APIs are disabled
+  # - CKV_GCP_68 # Ensure Secure Boot for Shielded GKE Nodes is Enabled
+  - CKV_GCP_69 # Ensure the GKE Metadata Server is Enabled
+  - CKV_GCP_70 # Ensure the GKE Release Channel is set
+  # - CKV_GCP_71 # Ensure Shielded GKE Nodes are Enabled
+  - CKV_GCP_73 # Ensure Cloud Armor prevents message lookup in Log4j2. See CVE-2021-44228 aka log4jshell
+  - CKV_GCP_75 # Ensure Google compute firewall ingress does not allow unrestricted FTP access
+  - CKV_GCP_77 # Ensure Google compute firewall ingress does not allow on ftp port
+  - CKV_GCP_78 # Ensure Cloud storage has versioning enabled
+  - CKV_GCP_114 # Ensure public access prevention is enforced on Cloud Storage bucket
+  - CKV2_GCP_1 # Ensure GKE clusters are not running using the Compute Engine default service account
+  - CKV2_GCP_18 # Ensure GCP network defines a firewall and does not use the default firewall
+  - CKV2_GCP_19 # Ensure GCP Kubernetes engine clusters have 'alpha cluster' feature disabled
+
+  #GKE policy
+  - CKV_K8S_1 # Minimize the admission of containers wishing to share the host process ID namespace
+  - CKV_K8S_3  # Do not admit containers wishing to share the host IPC namespace
+  - CKV_K8S_4  # Do not admit containers wishing to share the host network namespace
+  - CKV_K8S_5  # Containers should not run with allowPrivilegeEscalation
+  - CKV_K8S_6  # Do not admit root containers
+  - CKV_K8S_7  # Do not admit containers with the NET_RAW capability
+  - CKV_K8S_8  # Liveness Probe Should be Configured
+  - CKV_K8S_9  # Readiness Probe Should be Configured
+  - CKV_K8S_10  # CPU requests should be set
+  - CKV_K8S_11  # CPU Limits should be set
+  - CKV_K8S_12  # Memory Limits should be set
+  - CKV_K8S_13  # Memory requests should be set
+  - CKV_K8S_14  # Image Tag should be fixed - not latest or blank
+  - CKV_K8S_15  # Image Pull Policy should be Always
+  - CKV_K8S_16  # Do not admit privileged containers
+  - CKV_K8S_17  # Do not admit containers wishing to share the host process ID namespace
+  - CKV_K8S_18  # Do not admit containers wishing to share the host IPC namespace
+  - CKV_K8S_19  # Do not admit containers wishing to share the host network namespace
+  - CKV_K8S_20  # Containers should not run with allowPrivilegeEscalation
+  - CKV_K8S_21  # The default namespace should not be used
+  - CKV_K8S_22  # Use read-only filesystem for containers where possible
+  - CKV_K8S_24  # Do not allow containers with added capability
+  - CKV_K8S_25  # Minimize the admission of containers with added capability
+  - CKV_K8S_26  # Do not specify hostPort unless absolutely necessary
+  - CKV_K8S_27  # Do not expose the docker daemon socket to containers
+  - CKV_K8S_28  # Minimize the admission of containers with the NET_RAW capability
+  - CKV_K8S_29  # Apply security context to your pods, deployments and daemon_sets
+  - CKV_K8S_30  # Apply security context to your pods and containers
+  - CKV_K8S_32  # Ensure default seccomp profile set to docker/default or runtime/default
+  - CKV_K8S_34  # Ensure that Tiller (Helm v2) is not deployed
+  - CKV_K8S_35  # Prefer using secrets as files over secrets as environment variables
+  - CKV_K8S_36  # Minimise the admission of containers with capabilities assigned
+  - CKV_K8S_37  # Minimise the admission of containers with capabilities assigned
+  - CKV_K8S_39  # Do not use the CAP_SYS_ADMIN linux capability
+  - CKV_K8S_41  # Ensure that default service accounts are not actively used
+  - CKV_K8S_42  # Ensure that default service accounts are not actively used
+  - CKV_K8S_43  # Image should use digest
+  - CKV_K8S_44  # Ensure that the Tiller Service (Helm v2) is deleted
+  # - CKV_K8S_49  # Minimize wildcard use in Roles and ClusterRoles
+  - CKV_K8S_112 # Ensure that the RotateKubeletServerCertificate argument is set to true
+  - CKV_K8S_143 # Ensure that the –streaming-connection-idle-timeout argument is not set to 0
+  - CKV_K8S_88 # Ensure that the –insecure-port argument is set to 0
+  - CKV_K8S_144 # Ensure that the –protect-kernel-defaults argument is set to true
+  - CKV_K8S_145 # Ensure that the –make-iptables-util-chains argument is set to true
+  - CKV_K8S_146 # Ensure that the –hostname-override argument is not set
+
+  #Built in + custom polices for GKE
+  - CKV_GCP_13 #Ensure client certificate authentication to Kubernetes Engine Clusters is disabled
+  - CKV2_GCP_1 #Ensure GKE clusters are not running using the Compute Engine default service account
+  - CKV_GCP_66 #Ensure use of Binary Authorization
+  - CKV_GCP_23 #Ensure Kubernetes Cluster is created with Alias IP ranges enabled
+  - CKV2_GCP_19 #Ensure GCP Kubernetes engine clusters have 'alpha cluster' feature disabled
+  - CKV_GCP_1 #Ensure Stackdriver Logging is set to Enabled on Kubernetes Engine Clusters
+  - CKV_GCP_8 #Ensure Stackdriver Monitoring is set to Enabled on Kubernetes Engine Clusters
+  - CKV_GCP_7 #Ensure Legacy Authorization is set to Disabled on Kubernetes Engine Clusters
+  - CKV_GCP_20 #Ensure master authorized networks is set to enabled in GKE clusters
+  - CKV_GCP_12 #Ensure Network Policy is enabled on Kubernetes Engine Clusters
+  - CKV_GCP_24 #Ensure PodSecurityPolicy controller is enabled on the Kubernetes Engine Clusters
+  - CKV_GCP_64 #Ensure clusters are created with Private Nodes
+  - CKV_GCP_22 #Ensure Container-Optimized OS (cos) is used for Kubernetes Engine Clusters Node image
+  - CKV_K8S_33 #Ensure the Kubernetes dashboard is not deployed
+  - CKV_GCP_21 #Ensure Kubernetes Clusters are configured with Labels
+  - CKV_GCP_70 #Ensure the GKE Release Channel is set
+  - CKV_GCP_25 #Ensure Kubernetes Cluster is created with Private cluster enabled
+  # - CKV_GCP_71 #Ensure Shielded GKE Nodes are Enabled
+  - CKV_GCP_61 #Enable VPC Flow Logs and Intranode Visibility
+  - CKV_GCP_9 #Ensure 'Automatic node repair' is enabled for Kubernetes Clusters
+  - CKV_GCP_10 #Ensure 'Automatic node upgrade' is enabled for Kubernetes Clusters
+  # - CKV_GCP_68 #Ensure Secure Boot for Shielded GKE Nodes is Enabled
+  - CKV_GCP_72 #Ensure Integrity Monitoring for Shielded GKE Nodes is Enabled
+  - CKV_GCP_13 #Ensure client certificate authentication to Kubernetes Engine Clusters is disabled
+  - CKV_GCP_18 #Ensure GKE Control Plane is not public
+  - CKV_GCP_65 #Manage Kubernetes RBAC users with Google Groups for GKE
+  - CKV_GCP_69 #Ensure the GKE Metadata Server is Enabled
+
+  #Built in + custom polices for GCS
+  - CKV_GCP_28 #Ensure that Cloud Storage bucket is not anonymously or publicly accessible
+  - CKV_GCP_78 #Ensure Cloud storage has versioning enabled
+  - CKV_GCP_29 #Ensure that Cloud Storage buckets have uniform bucket-level access enabled
+  - CKV_GCP_114 #Ensure public access prevention is enforced on Cloud Storage bucket
+
+  #Built in + custom polices for Pub/Sub
+  - CKV_GCP_83 #Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)
+  - CKV_GCP_99 #Ensure that Pub/Sub Topics are not anonymously or publicly accessible
+
+  #Built in + custom polices for REDIS (Google Cloud Memory Store)
+  - CKV_GCP_95 #Ensure Memorystore for Redis has AUTH enabled
+  - CKV_GCP_99 #Ensure Memorystore for Redis uses intransit encryption
+
+  #Built in + custom polices for Cloud SQL
+  - CKV_GCP_52 #Ensure PostgreSQL database 'log_connections' flag is set to 'on'
+  - CKV_GCP_53 #Ensure PostgreSQL database 'log_disconnections' flag is set to 'on'
+  - CKV2_GCP_13 #Ensure PostgreSQL database flag 'log_duration' is set to 'on'
+  - CKV2_GCP_14 #Ensure PostgreSQL database flag 'log_executor_stats' is set to 'off'
+  - CKV_GCP_108 #Ensure hostnames are logged for GCP PostgreSQL databases
+  - CKV_GCP_54  #Ensure PostgreSQL database 'log_lock_waits' flag is set to 'on'
+  - CKV_GCP_57  #Ensure PostgreSQL database 'log_min_duration_statement' flag is set to '-1'
+  - CKV_GCP_55  #Ensure PostgreSQL database 'log_min_messages' flag is set to a valid value
+  - CKV2_GCP_15 #Ensure PostgreSQL database flag 'log_parser_stats' is set to 'off'
+  - CKV2_GCP_16 #Ensure PostgreSQL database flag 'log_planner_stats' is set to 'off'
+  - CKV2_GCP_17 #Ensure PostgreSQL database flag 'log_statement_stats' is set to 'off'
+  - CKV_GCP_56  #Ensure PostgreSQL database 'log_temp_files flag is set to '0'
+  - CKV_GCP_51  #Ensure PostgreSQL database 'log_checkpoints' flag is set to 'on'
+  - CKV_GCP_109 #Ensure the GCP PostgreSQL database log levels are set to ERROR or lower
+  - CKV_GCP_110 #Ensure pgAudit is enabled for your GCP PostgreSQL database
+  - CKV_GCP_111 #Ensure GCP PostgreSQL logs SQL statements
+  - CKV2_GCP_7  #Ensure that a MySQL database instance does not allow anyone to connect with administrative privileges
+  - CKV_GCP_60  #Ensure Cloud SQL database does not have public IP
+  - CKV_GCP_50  #Ensure MySQL database 'local_infile' flag is set to 'off'
+  - CKV_GCP_59  #Ensure SQL database 'contained database authentication' flag is set to 'off'
+  - CKV_GCP_58  #Ensure SQL database 'cross db ownership chaining' flag is set to 'off'
+  - CKV_GCP_14  #Ensure all Cloud SQL database instance have backup configuration enabled
+  - CKV2_GCP_20 #Ensure MySQL DB instance has point-in-time recovery backup configure
+  - CKV_GCP_11  #Ensure that Cloud SQL database Instances are not open to the world
+
+  #Built in + custom polices for Artifacts Registry
+  - CKV_GCP_101 #Ensure that Artifact Registry repositories are not anonymously or publicly accessible
+
+  #Built in + custom polices for Cloud Armor
+  - CKV_GCP_73 #Ensure Cloud Armor prevents message lookup in Log4j2. See CVE-2021-44228 aka log4jshell
+
+  #Built in + custom polices for IAM
+  - CKV_GCP_41 #Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level
+  - CKV_GCP_42 #Ensure that Service Account has no Admin privileges
+  - CKV_GCP_44 #Ensure no roles that enable to impersonate and manage all service accounts are used at a folder level
+  - CKV_GCP_46 #Ensure Default Service account is not used at a project level
+  - CKV_GCP_47 #Ensure default service account is not used at an organization level
+  - CKV_GCP_48 #Ensure Default Service account is not used at a folder level
+  - CKV_GCP_113 #Ensure IAM policy should not define public access
+  - CKV_GCP_115 #Ensure basic roles are not used at organization level
+  - CKV_GCP_116 #Ensure basic roles are not used at folder level
+  - CKV_GCP_117 #Ensure basic roles are not used at project level
+  - CKV_GCP_LABELS_CUSTOM_01 #GCP resources that support labels do not have labels
+  - CKV2_GCP_3 #Ensure that there are only GCP-managed service account keys for each service accoun
+
+  #Built in + custom polices for cloud run
+  - CKV_GCP_102
+
+  #Built in + custom polices for cloud function
+  - CKV_GCP_124
+  - CKV2_GCP_10
+  - CKV_GCP_107
+  - CKV2_GCP_10
+  - CKV_GCP_107
+
+  #Built in + custom polices for big query
+  - CKV_GCP_15
+  - CKV_GCP_100
+
+  # aws policies
+  - CKV_AWS_352 # Ensure NACL ingress does not allow all Ports
+  - CKV_AWS_115 # Ensure AWS Lambda function is configured for function-level concurrent execution level
+  - CKV_AWS_57 # Ensure ACL does not allow public write permissions
+  - CKV_AWS_355 # Ensure S3 bucket has block public ACLs enabled
+
+soft-fail-on: #DO NOT REMOVE
+  - "CKV_K8S_3"
+  - "CKV_GCP_1"
