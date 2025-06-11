@@ -16,3 +16,12 @@ resource "aws_lb" "test3" {
   subnets = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
   internal = true
 }
+resource "aws_s3_bucket" "insecure_bucket" {
+  bucket = "my-insecure-bucket"
+  acl    = "public-read"   # <-- Vulnerability: Publicly accessible bucket
+
+  tags = {
+    Name        = "InsecureBucket"
+    Environment = "Dev"
+  }
+}
