@@ -197,9 +197,6 @@ check:
   - CKV_GCP_LABELS_CUSTOM_01 #GCP resources that support labels do not have labels
   - CKV2_GCP_3 #Ensure that there are only GCP-managed service account keys for each service accoun
 
-  #Built in + custom polices for cloud run
-  - CKV_GCP_102
-
   #Built in + custom polices for cloud function
   - CKV_GCP_124
   - CKV2_GCP_10
