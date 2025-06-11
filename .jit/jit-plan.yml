@@ -28,3 +28,4 @@ override:
                 args: filesystem ${WORK_DIR:-.} --json --only-verified
                 env:
                   SECURITY_CONTROL_OUTPUT_FILE: /tmp/final-findings.json
+  
