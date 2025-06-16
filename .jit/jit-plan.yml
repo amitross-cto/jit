@@ -26,7 +26,7 @@ override:
             - name: Run Checkov
               with:
                 env:
-                    SEVERITY_THRESHOLD: LOW
+                  SEVERITY_THRESHOLD: LOW
         iac-misconfig-detection-cloudformation:
           enabled: false
         iac-misconfig-detection-kubernetes:
