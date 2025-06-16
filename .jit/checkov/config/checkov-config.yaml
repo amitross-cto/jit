@@ -1,8 +1,3 @@
-output: cli
-quiet: false
-skip-download: true
-external-checks-dir:
-  - "./policies"
 check:
   - CKV_DOCKER_5 #Ensure update instructions are not use alone in the Dockerfile
   - CKV_DOCKER_3 #Ensure that a user for the container has been created
