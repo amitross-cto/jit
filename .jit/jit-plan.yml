@@ -24,7 +24,7 @@ override:
           enabled: true
           steps:
             - name: Run Checkov
-                with:
+              with:
                 env:
                     SEVERITY_THRESHOLD: LOW
         iac-misconfig-detection-cloudformation:
