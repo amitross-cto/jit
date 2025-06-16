@@ -22,6 +22,11 @@ override:
       jobs:
         checkov-iac-misconfig-detection:
           enabled: true
+          steps:
+            - name: Run Checkov
+                with:
+                env:
+                    SEVERITY_THRESHOLD: LOW
         iac-misconfig-detection-cloudformation:
           enabled: false
         iac-misconfig-detection-kubernetes:
