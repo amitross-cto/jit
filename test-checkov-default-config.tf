@@ -10,6 +10,7 @@ resource "aws_lb_listener" "listener6" {
     }
   }
 }
+
 resource "aws_lb" "test3" {
   name = "test123"
   load_balancer_type = "application"
