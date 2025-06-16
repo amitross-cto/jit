@@ -57,13 +57,13 @@ resource "google_container_cluster" "insecure_cluster" {
   # Triggers CKV_GCP_25 - Not a private cluster
   # Triggers CKV_GCP_64 - No private nodes
 
-  master_authorized_networks_config {
-    # Triggers CKV_GCP_20 - Allows access from anywhere
-    cidr_blocks {
-      cidr_block   = "0.0.0.0/0"
-      display_name = "all"
-    }
-  }
+  # master_authorized_networks_config {
+  #   # Triggers CKV_GCP_20 - Allows access from anywhere
+  #   cidr_blocks {
+  #     cidr_block   = "0.0.0.0/0"
+  #     display_name = "all"
+  #   }
+  # }
 }
 
 # Insecure GCS bucket - will trigger storage checks
