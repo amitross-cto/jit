@@ -1,5 +1,5 @@
-# security_tools_management:
-#   checkov:
-#     config: .jit/checkov/config/checkov-config.yaml
-#     exemption: .jit/checkov/exemption/checkov-exemptions.yaml
-#     policy: .jit/checkov/policy/checkov-policy.yaml
+security_tools_management:
+  checkov:
+    config: .jit/checkov/config/checkov-config.yaml
+    exemption: .jit/checkov/exemption/checkov-exemptions.yaml
+    policy: .jit/checkov/policy/checkov-policy.yaml
