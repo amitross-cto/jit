@@ -1,3 +1,4 @@
 security_tools_management:
   checkov:
     config: .jit/checkov/config/checkov-config-1.yaml
+    policy: .jit/checkov/policy/policies.zip
